@@ -4,24 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RR Design e Web Solutions | Portfólio</title>
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '668974976183150');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<link rel="icon" type="image/png" href="assets/logo.png">
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <style>
         :root {
             --primary-neon: #39ff14;
@@ -137,15 +122,16 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
         .logo-wrapper {
             position: relative;
             margin-bottom: 2rem;
+            margin-top: 40px; /* deslocamento padrão da logo (aumentado) */
             animation: float 6s ease-in-out infinite;
         }
 
         .main-logo-img {
-            max-width: 1300px;
-            width: 100%;
-            filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.3));
-            animation: pulse-glow 3s infinite alternate;
-        }
+    max-width: 1300px;
+    width: 100%;
+    filter: drop-shadow(0 0 100px rgba(57, 255, 20, 1));
+    animation: pulse-glow 3s infinite alternate;
+}
 
         .hero h1 {
             font-size: 3rem;
@@ -271,13 +257,86 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
         }
 
         /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
+       @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-btn { display: block; }
 
-            .hero h1 { font-size: 2rem; }
-            .main-logo-img { max-width: 950px; }
-        }
+    .hero h1 { font-size: 2rem; }
+
+    /* AQUI ESTÁ A CORREÇÃO */
+    .main-logo-img {
+        width: 95vw !important;      /* ocupa 95% da largura do viewport */
+        max-width: 95vw !important;  /* garante que não fique preso por max-width anterior */
+        height: auto !important;
+        margin: 0 auto;
+    }
+}
+
+/* Tablets e notebooks: 769px até 1200px */
+@media (min-width: 769px) and (max-width: 1200px) {
+    nav {
+        padding: 14px 4%;
+    }
+
+    .nav-links {
+        gap: 14px;
+        font-size: 0.95rem;
+        flex-wrap: wrap;
+    }
+
+    /* Mostrar logo em tamanho mais contido */
+    .main-logo-img {
+        max-width: 900px;
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+        filter: drop-shadow(0 0 60px rgba(57, 255, 20, 0.8));
+    }
+
+    .hero {
+        padding: 40px 20px;
+        min-height: 80vh;
+        padding-bottom: 60px;
+    }
+
+    .hero h1 { font-size: 2.4rem; }
+    .hero p { font-size: 1.1rem; }
+
+    .hero .btn { margin-top: 26px; }
+
+    /* Evita que o botão do hero sobreponha a próxima seção */
+    #servicos { padding-top: 140px; }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    /* Ajustes no botão e cards para evitar overflow */
+    .btn { padding: 10px 22px; }
+    .card { padding: 22px; }
+
+    /* Descer a logo especificamente neste breakpoint */
+    .logo-wrapper { margin-top: 160px; }
+}
+
+/* Notebooks maiores: 1201px até 1600px */
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .hero {
+        min-height: 78vh;
+        padding-bottom: 100px; /* mais espaço para o botão */
+    }
+
+    .hero .btn { margin-top: 30px; }
+
+    /* Garante espaço suficiente antes da seção de serviços */
+    #servicos { padding-top: 120px; }
+
+    /* Ajuste de logo e título para notebooks */
+    .main-logo-img { max-width: 1000px; width: 100%; }
+    .hero h1 { font-size: 3rem; }
+    .logo-wrapper { margin-top: 200px; }
+}
     </style>
 </head>
 
@@ -291,13 +350,13 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
         <ul class="nav-links">
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="portfolio.html">Portfólio</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="contato.html">Contato</a></li>
         </ul>
 
         <div class="mobile-menu" id="mobileMenu">
             <a href="#servicos">Serviços</a>
             <a href="portfolio.html">Portfólio</a>
-            <a href="#contato">Contato</a>
+            <a href="contato.html">Contato</a>
         </div>
     </nav>
 
@@ -315,23 +374,27 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
 
         <div class="services-grid">
             <div class="card">
-                <h3>Web Design</h3>
-                <p>Criação de sites responsivos e modernos com foco em conversão.</p>
+                <h3>Design de Embalagens</h3>
+                <p>Design de rótulos pensado para destacar, comunicar e vender.</p>
             </div>
 
             <div class="card">
-                <h3>Identidade Visual 3D</h3>
-                <p>Logos com profundidade e estilo futurista.</p>
+                <h3>Identidade Visual</h3>
+                <p>Sua marca com identidade forte, profissional e memorável.</p>
             </div>
 
             <div class="card">
                 <h3>Desenvolvimento Web</h3>
-                <p>Código limpo, rápido e escalável.</p>
+                <p>Desenvolvimento front-end focado em design, usabilidade e performance.</p>
             </div>
 
             <div class="card">
                 <h3>Gestão de Mídias Sociais</h3>
                 <p>Estrategia, design e conteúdo que convertem seguidores em clientes.</p>
+            </div>
+            <div class="card">
+                <h3>Design Gráfico</h3>
+                <p>Design gráfico profissional para marcas que não querem passar despercebidas.</p>
             </div>
 
             <div class="card">
@@ -341,7 +404,11 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
 
             <div class="card">
                 <h3>Fotografia Comercial</h3>
-                <p>Fotos profissionais de produtos e ambientes.</p>
+                <p>Imagens de alto padrão para marcas que exigem excelência.</p>
+            </div>
+            <div class="card">
+                <h3>Vídeomaker</h3>
+                <p>Vídeos profissionais para marketing, redes sociais e divulgação. Histórias em vídeos que elevam o valor da sua marca.</p>
             </div>
         </div>
     </section>
@@ -356,7 +423,7 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
     </section>
 
     <footer>
-        <p>&copy; 2024 RR Design e Web Solutions. Todos os direitos reservados.</p>
+        <p>&copy; 2026 RR Design e Web Solutions. Todos os direitos reservados.</p>
     </footer>
 
     <!-- BOTÃO WHATSAPP -->
@@ -410,9 +477,3 @@ src="https://www.facebook.com/tr?id=668974976183150&ev=PageView&noscript=1"
 
 </body>
 </html>
-
-
-
-
-
-
