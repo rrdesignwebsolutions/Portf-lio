@@ -240,6 +240,20 @@
             }
         }
 
+        /* MENU MOBILE */
+        .menu-btn {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         @media(max-width:560px) {
             .grid {
                 grid-template-columns: 1fr
@@ -253,12 +267,63 @@
             .nav-links {
                 display: none
             }
+
+            .menu-btn {
+                display: block
+            }
         }
 
-        .card-link {
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: black;
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            width: 200px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .mobile-menu a {
+            color: var(--text);
             text-decoration: none;
-            color: inherit;
-            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(37,211,102,0.8);
+        }
+
+        .whatsapp-float img {
+            width: 38px;
+            height: 38px;
         }
     </style>
 </head>
@@ -266,7 +331,13 @@
 <body>
     <nav>
         <div class="nav-logo"><img src="assets/logo.png" alt="Logo RR Design"></div>
+        <div class="menu-btn" onclick="toggleMenu()">&#9776;</div>
         <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="portfolio.html">Portfólio</a>
+            <a href="contato.html">Contato</a>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">Início</a>
             <a href="portfolio.html">Portfólio</a>
             <a href="contato.html">Contato</a>
@@ -356,6 +427,18 @@
         &copy; 2026 RR Design e Web Solutions — <a href="contato.html"
             style="color:var(--neon);text-decoration:none">Solicite orçamento</a>
     </footer>
+
+    <!-- BOTÃO WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?phone=5535991393009" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
 
 </body>
 
