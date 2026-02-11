@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato — RR Design e Web Solutions</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <style>
+        :root{
+            --primary-neon: #39ff14;
+            --secondary-neon: #00f3ff;
+            --bg-color: #050505;
+            --card-bg: rgba(255,255,255,0.04);
+            --text-color: #e0e0e0;
+        }
+
+        /*logo nav */
+        .nav-logo img {
+            padding: auto;
+            width: 120px;
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Verdana, sans-serif}
+        body{background:var(--bg-color);color:var(--text-color);-webkit-font-smoothing:antialiased}
+
+        nav{display:flex;justify-content:space-between;align-items:center;padding:18px 5%;position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.8);border-bottom:1px solid rgba(255,255,255,0.06);z-index:1000}
+        .nav-logo{font-weight:700;letter-spacing:2px;background:linear-gradient(#fff,#7a7a7a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-links{display:flex;gap:22px;list-style:none}
+        .nav-links a{text-decoration:none;color:var(--text-color);font-weight:600}
+
+        main{padding:120px 5% 60px}
+
+        .contact-card{max-width:920px;margin:40px auto;background:var(--card-bg);padding:34px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+        .contact-title{text-align:center;font-size:2rem;margin-bottom:20px}
+        .contact-sub{color:var(--secondary-neon);text-align:center;margin-bottom:28px}
+
+        form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .full{grid-column:1/ -1}
+
+        label{display:block;font-weight:600;margin-bottom:8px}
+        input[type=text], input[type=email], textarea{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text-color)}
+        textarea{min-height:150px;resize:vertical}
+
+        .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}
+        .btn{padding:12px 20px;border-radius:8px;border:2px solid var(--primary-neon);background:transparent;color:var(--primary-neon);font-weight:700;cursor:pointer}
+        .btn:hover{background:var(--primary-neon);color:#000;box-shadow:0 0 20px var(--primary-neon)}
+
+        .hint{font-size:0.9rem;color:#9aa0a6;margin-top:8px}
+
+        footer{margin-top:40px;padding:28px;text-align:center;color:#777;border-top:1px solid #222}
+
+        @media(max-width:880px){form{grid-template-columns:1fr} main{padding:100px 4%} .contact-card{margin:20px auto}}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo"><img src="assets/logo.png" alt="Logo RR Design"></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="portfolio.html">Portfólio</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="contact-card" role="region" aria-labelledby="contato-title">
+            <h1 id="contato-title" class="contact-title">Fale comigo</h1>
+            <div class="contact-sub">Preencha os dados e envio sua mensagem direto no WhatsApp</div>
+
+            <form id="contactForm" aria-describedby="contact-hint">
+                <div>
+                    <label for="name">Nome *</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="email">E-mail *</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required aria-required="true">
+                </div>
+
+                <div>
+                    <label for="phone">Telefone</label>
+                    <input id="phone" name="phone" type="text" placeholder="(99) 99999-9999" autocomplete="tel">
+                </div>
+
+                <div>
+                    <label for="subject">Assunto</label>
+                    <input id="subject" name="subject" type="text">
+                </div>
+
+                <div class="full">
+                    <label for="message">Mensagem *</label>
+                    <textarea id="message" name="message" required aria-required="true" placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+
+                <div class="full actions">
+                    <div style="flex:1;align-self:center">
+                        <div id="contact-hint" class="hint">Ao enviar, abrirá o WhatsApp com a mensagem pronta para ser enviada.</div>
+                    </div>
+                    <button type="submit" class="btn">Enviar via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 RR Design e Web Solutions. Todos os direitos reservados.
+    </footer>
+
+    <script>
+        (function(){
+            const form = document.getElementById('contactForm');
+            const phone = '5535991393009'; // número destino (BR)
+
+            function safeText(v){ return (v||'').toString().trim(); }
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                const data = {
+                    name: safeText(form.name.value),
+                    email: safeText(form.email.value),
+                    phone: safeText(form.phone.value),
+                    subject: safeText(form.subject.value),
+                    message: safeText(form.message.value)
+                };
+
+                // validação simples
+                if(!data.name || !data.email || !data.message){
+                    alert('Por favor, preencha Nome, E-mail e Mensagem.');
+                    return;
+                }
+
+                // Monta o texto de forma clara
+                let text = '*Novo contato pelo site*\n';
+                text += '\n*Nome:* ' + data.name;
+                text += '\n*E-mail:* ' + data.email;
+                if(data.phone) text += '\n*Telefone:* ' + data.phone;
+                if(data.subject) text += '\n*Assunto:* ' + data.subject;
+                text += '\n\n*Mensagem:*\n' + data.message;
+
+                const encoded = encodeURIComponent(text);
+                const url = 'https://api.whatsapp.com/send?phone=' + phone + '&text=' + encoded;
+
+                // abre em nova aba (ou app no mobile)
+                window.open(url, '_blank');
+            });
+        })();
+    </script>
+</body>
+</html>
