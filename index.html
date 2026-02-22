@@ -166,6 +166,18 @@
             color: black;
             box-shadow: 0 0 20px var(--primary-neon);
         }
+        /* highlighted button variant for important calls to action */
+        .btn.highlight {
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            border-color: var(--secondary-neon);
+            color: var(--secondary-neon);
+        }
+        .btn.highlight:hover {
+            background: var(--secondary-neon);
+            color: black;
+            box-shadow: 0 0 25px var(--secondary-neon);
+        }
 
         section {
             padding: 80px 5%;
@@ -412,6 +424,10 @@
             </div>
         </div>
     </section>
+
+    <div style="text-align:center; margin:40px 0 20px;">
+        <a href="portfolio.html" class="btn highlight">Ver Portfólio</a>
+    </div>
 
     <section id="contato" style="background: rgba(255,255,255,0.02);">
         <h2 class="section-title">Vamos <span>Conversar?</span></h2>
