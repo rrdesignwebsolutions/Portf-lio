@@ -197,6 +197,12 @@
         .card:hover::before {
             opacity: 1
         }
+        /* on touch devices (no hover) keep instruction visible */
+        @media (hover: none) {
+            .card::before {
+                opacity: 1;
+            }
+        }
 
 
         footer {
