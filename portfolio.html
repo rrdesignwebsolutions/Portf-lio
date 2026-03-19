@@ -308,6 +308,48 @@
             width: 38px;
             height: 38px;
         }
+        /* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+}
+
+.modal-content {
+    background: #0a0a0a;
+    margin: 10% auto;
+    padding: 30px;
+    width: 320px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.modal-content a {
+    display: block;
+    margin: 12px 0;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--neon);
+    background: rgba(255,255,255,0.03);
+}
+
+.modal-content a:hover {
+    background: rgba(0,255,200,0.1);
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 22px;
+}
     </style>
 </head>
 
@@ -352,13 +394,13 @@
             <div class="grid" id="projects">
                 <!-- Use os assets disponíveis; ajuste conforme necessário -->
 
-                <a href="https://www.sonhodepatas.com.br" target="_blank" class="card-link">
-                    <div class="card" data-cat="web" data-title="Projeto 1 - Site" data-img="assets/1.png">
-                        <img src="assets/1.png" alt="Projeto 1">
-                        <h3>Web Site</h3>
-                        <p>Design focado em performance e taxa de conversão.</p>
-                    </div>
-                </a>
+                <div class="card-link" onclick="openModal()">
+    <div class="card" data-cat="web" data-title="Projeto 1 - Site" data-img="assets/1.png">
+        <img src="assets/1.png" alt="Projeto 1">
+        <h3>Web Site</h3>
+        <p>Design focado em performance e taxa de conversão.</p>
+    </div>
+</div>
 
 
                 <a href="assets/IDENTIDADE VISUAL.pdf" target="_blank" class="card-link">
@@ -422,14 +464,39 @@
     </a>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById("mobileMenu");
-            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-        }
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
 
+function openModal() {
+    document.getElementById("portfolioModal").style.display = "block";
+}
 
-    </script>
+function closeModal() {
+    document.getElementById("portfolioModal").style.display = "none";
+}
 
+window.onclick = function(event) {
+    const modal = document.getElementById("portfolioModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+    
+<!-- MODAL PROJETOS WEB -->
+<div id="portfolioModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Projetos Web</h2>
+
+        <a href="https://www.sonhodepatas.com.br" target="_blank">🐶 Sonho de Patas</a>
+        <a href="https://www.duaal.com.br" target="_blank">💻 Duaal Indústria de Bebidas</a>
+        <a href="https://ruanprogramadorweb.github.io/PetGuardian-Site/" target="_blank">🚀 PetGuardian</a>
+    </div>
+</div>
 </body>
 
 </html>
